@@ -2,8 +2,9 @@
   <div id="app">
     <h3>Average Number of Visitors :- {{ numberofvisitors }} </h3>
     <h3>Average Website Conversion Rate :- {{ avgwebsite }} %</h3>
-    <h3>Average Transaction Value :- {{ avgtransaction }} £</h3>
+    <h3>Average Transaction Value :- £ {{ avgtransaction }} </h3>
     <h3>Increase in Conversion Rate Needed :- {{ slider }} %</h3>
+    <!-- <h4> CHILD-1-1 : {{ child_1_1 }}</h4> -->
     <input id="id-numberofvisitors" name="numberofvisitors" type="text" autocomplete="off" v-model="numberofvisitors"
       class="input" placeholder="Average Number of Visitors" />
     <input id="id-avgwebsite" name="avgwebsite" type="text" autocomplete="off" v-model="avgwebsite" class="input"
@@ -14,7 +15,7 @@
     <br>
     <button type="button" class="id-button" @click="webConversionResults()">Calculate</button>
 
-    <div id="web_conversion_results">
+<!--     <div id="web_conversion_results">
       <div class="form-base">
         <div class="html-block html-block--theme-beta is-theme-beta">
           <div>
@@ -47,8 +48,7 @@
             <tr class="output-row">
               <td>Website Conversions</td>
               <td>{{ child_1_1 }} %</td>
-              <!-- <td>0%</td> -->
-              <td>{{ optimizedWeb }}</td>
+              <td>{{ child_1_2 }}</td>
               <td
                 style="background-color: rgb(236, 255, 236); color: rgb(0, 153, 0); font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: rgb(0, 153, 0); border-right-width: 1px; border-right-style: solid; border-right-color: rgb(0, 153, 0);">
                 {{ child_1_3 }} %</td>
@@ -88,7 +88,7 @@
           </tbody>
         </table>
       </div>
-    </div>
+    </div> -->
   </div>
 
 </template>
@@ -101,7 +101,6 @@ import { ref } from 'vue'
       msg: String
     },
     setup() {
-      var optimizedWeb = '';
       var slider = ref('');
       var numberofvisitors = ref('');
       var avgwebsite = ref('');
@@ -129,177 +128,85 @@ import { ref } from 'vue'
         numberofvisitors.value;
       }
 
-      function website() {
-        (avgwebsite.value)/100;
-      }
 
       function transaction() {
         (avgtransaction.value);
       }
 
-      var q = "";
-      var A = "";
-      var n = 0;
-      var o = visitors;
-      var u = website;
-      var y = o * u;
-      var l = y * transaction;
-      var w = website * (1 + customslider);
-      var k = '';
-      var d = o * w;
-      var a = d * transaction;
-      var s = w * u;
-      var h = d - y;
-      var g = a - l;
 
-      var z = l / o ;
-      var m = o / y;
-      var p = a / o;
-      var f = o / d;
-      var t = (p - z) / z;
-      var B = (f - m) / m;
-
-      var getAllElements = document.querySelectorAll(".output-row");
-
-      var child_0_1, child_0_2, child_1_1, child_1_3, child_2_1, child_2_2, child_2_3, child_3_1, child_3_2, child_3_3, child_4_1, child_4_2, child_4_3, child_5_1, child_5_2, child_5_3;
+      var child_0_1, child_0_2, child_1_1, child_1_2, child_1_3, child_2_1, child_2_2, child_2_3, child_3_1, child_3_2, child_3_3, child_4_1, child_4_2, child_4_3, child_5_1, child_5_2, child_5_3, X, Sv, W, L, T, C;
 
       function  webConversionResults() {
-      console.log('test');
-        if (e) {
-        return false;
-        }
-        if (w > 1) {
-        q = "Invalid input in your desired conversion rate increase";
-        A = "A website conversion rate can't be superior to 100%, so we replace your input value by 100%. Please also consider that a 100% conversion rate is unlikely to happen.";
-        displayErrorModal(q, A, true);
-        w = 1;
-        k = 1;
-        for (var x = 1, j = 0; x <= 250; x++) {
-                    if (j > 100) {
-                        k = x - 1;
-                        break
-                    }
-                    j = website * (1 + x)
-        }
-        k -= 100;
-        // Code still to be written
 
-        /* $("#web_conversion_slider").slider("destroy");
-                $("#web_conversion_slider").slider({
-                    create: function (i, C) {},
-                    value: k,
-                    min: 0,
-                    max: 250,
-                    slide: function (i, C) {
-                        $("#web_conversion_amt").text(C.value)
-                    },
-                    stop: function (i, C) {
-                        if ($("#web_conversion_results").css("visibility") != "hidden") {
-                            webConversionResults()
-                        }
-                    }
-                }); */
-                // $("#web_conversion_amt").text(k)
-        }
+        X = ((avgwebsite.value)/100);
+        Sv = ((slider.value)/100);
+        W = X * (1 + Sv);
+        L = (((numberofvisitors.value) * X) * (avgtransaction.value));
+        T = (((((numberofvisitors.value) * W) * (avgtransaction.value)) / (numberofvisitors.value)) - (L / (numberofvisitors.value)) ) / (L / (numberofvisitors.value));
+        C = (((numberofvisitors.value) / ((numberofvisitors.value) * W) ) - ((numberofvisitors.value) / ((numberofvisitors.value) * X))) / ((numberofvisitors.value) / ((numberofvisitors.value) * X));
 
-        child_0_1 = '0';
-        child_0_2 = '0';
-        console.log('child_0_1', child_0_1);
-        child_1_1 = roundHundredth(u * 100) + "%";
-        optimizedWeb = child_1_1 + "%";
-        child_1_3 = "+" + roundHundredth(s * 100) + "%";
-        child_2_1 = Math.round(y);
-        child_2_2 = Math.round(d);
-        child_2_3 = Math.round(h);
-        child_3_1 = "&pound; " + l;
-        child_3_2 = "&pound; " + roundHundredth(a);
-        child_3_3 = "&pound; " + roundHundredth(g);
-        child_4_1 = isNaN(roundHundredth(z)) ? "&pound; 0" : "&pound; " + roundHundredth(z);
-        child_4_2 = isNaN(roundHundredth(p)) ? "&pound; 0" : "&pound; " + roundHundredth(p);
-        child_4_3 = isNaN(roundHundredth(t * 100)) ? "+0%" : "+" + roundHundredth(t * 100) + "%";
-        child_5_1 = isNaN(roundHundredth(m)) ? 0 : roundHundredth(m);
-        child_5_2 = isNaN(roundHundredth(f)) ? 0 : roundHundredth(f);
-        child_5_3 = isNaN(roundHundredth(B * 100)) ? "0%" : roundHundredth(B * 100) + "%";
+        child_0_1 = '';
+        child_0_2 = '';
+        console.log( 'Child_0_1 : ' ,child_0_1);
+        console.log( 'Child_0_1 : ' ,child_0_2);
 
-        // for (var i = 0; i < getAllElements.length; i++) {
-        //         var getAllChild = getAllElements[i].children;
-        //         // No of Visitors
-        //         if (i == 0) {
-        //             getAllChild[1].innerHTML = o;
-        //             getAllChild[2].innerHTML = o;
-        //         // Website Conversion
-        //         } else if (i == 1) {
-        //             getAllChild[1].innerHTML = ;
-        //             optimizedWeb = ;
-        //             console.log(optimizedWeb);
-        //             getAllChild[3].innerHTML = "+" + roundHundredth(s * 100) + "%";
-        //         // No of Sales
-        //         } else if (i == 2) {
-        //             getAllChild[1].innerHTML = Math.round(y);
-        //             getAllChild[2].innerHTML = Math.round(d);
-        //             getAllChild[3].innerHTML = Math.round(h);
-        //         // Revenue
-        //         } else if (i == 3) {
-        //             getAllChild[1].innerHTML = "&pound; " + l;
-        //             getAllChild[2].innerHTML = "&pound; " + roundHundredth(a);
-        //             getAllChild[3].innerHTML = "&pound; " + roundHundredth(g);
-        //         // Revenue per Visitor 
-        //         } else if (i == 4) {
-        //             getAllChild[1].innerHTML = isNaN(roundHundredth(z)) ? "&pound; 0" : "&pound; " + roundHundredth(z);
-        //             getAllChild[2].innerHTML = isNaN(roundHundredth(p)) ? "&pound; 0" : "&pound; " + roundHundredth(p);
-        //             getAllChild[3].innerHTML = isNaN(roundHundredth(t * 100)) ? "+0%" : "+" + roundHundredth(t * 100) + "%";
-        //         // Visitors per Transaction
-        //         } else if (i == 5) {
-        //             getAllChild[1].innerHTML = isNaN(roundHundredth(m)) ? 0 : roundHundredth(m);
-        //             getAllChild[2].innerHTML = isNaN(roundHundredth(f)) ? 0 : roundHundredth(f);
-        //             getAllChild[3].innerHTML = isNaN(roundHundredth(B * 100)) ? "0%" : roundHundredth(B * 100) + "%";
-        //         }
-        //     }
+        
+        child_1_1 = roundHundredth( X * 100) + "%";
+        child_1_2 = roundHundredth(X * (1 + Sv )) * 100 + "%";
+        child_1_3 = "+" + roundHundredth((W - X) * 100) + "%";
+        console.log( 'Child_1_1 : ' ,child_1_1);
+        console.log( 'Child_1_1 : ' ,child_1_2);
+        console.log( 'Child_1_1 : ' ,child_1_3);
+        
 
-            
-            querySelector("#web_conversion_results").style.display = "block";
-            // if (w < 1) {
-            //    $("html, body").animate({
-            //          scrollTop: 500
-            //    }, "slow", function () {})
-            // }
-            return false
-           
+        child_2_1 = Math.round( (numberofvisitors.value) * X);
+        child_2_2 = Math.round((numberofvisitors.value) * W);
+        child_2_3 = Math.round( ((numberofvisitors.value) * W) - ((numberofvisitors.value) * X)); 
+        console.log( 'Child_2_1 : ' ,child_2_1);
+        console.log( 'Child_2_1 : ' ,child_2_2);
+        console.log( 'Child_2_1 : ' ,child_2_3);   
+
+        child_3_1 = '£'  + L;
+        child_3_2 = '£'  + roundHundredth(((numberofvisitors.value) * W) * (avgtransaction.value));
+        child_3_3 = '£' + roundHundredth((((numberofvisitors.value) * W) * (avgtransaction.value)) - L);
+        console.log( 'Child_3_1 : ' ,child_3_1);
+        console.log( 'Child_3_1 : ' ,child_3_2);
+        console.log( 'Child_3_1 : ' ,child_3_3);
+       
+
+        child_4_1 = isNaN(roundHundredth(L / numberofvisitors.value)) ? "£; 0" : "£ " + roundHundredth(L / numberofvisitors.value);
+        child_4_2 = isNaN(roundHundredth((((numberofvisitors.value) * W) * (avgtransaction.value)) / numberofvisitors.value)) ? "£; 0" : "£ " + roundHundredth((( (numberofvisitors.value) * W) * (avgtransaction.value)) / (numberofvisitors.value));
+        child_4_3 = isNaN(roundHundredth(T * 100)) ? "+0%" : "+" + roundHundredth(T * 100) + "%";
+        console.log( 'Child_4_1 : ' ,child_4_1);
+        console.log( 'Child_4_1 : ' ,child_4_2);
+        console.log( 'Child_4_1 : ' ,child_4_3);
+        
+
+        child_5_1 = isNaN(roundHundredth((numberofvisitors.value) / ((numberofvisitors.value) * X))) ? 0 : roundHundredth((numberofvisitors.value) / ((numberofvisitors.value) * X));
+        child_5_2 = isNaN(roundHundredth((numberofvisitors.value) / ( (numberofvisitors.value) * W) )) ? 0 : roundHundredth((numberofvisitors.value) / ( (numberofvisitors.value) * W));
+        child_5_3 = isNaN(roundHundredth(C * 100)) ? "0%" : roundHundredth(C * 100) + "%";
+        console.log( 'Child_5_1 : ' ,child_5_1);
+        console.log( 'Child_5_1 : ' ,child_5_2);
+        console.log( 'Child_5_1 : ' ,child_5_3);
+
       }
       
 
       return {
-        optimizedWeb,
         slider,
         numberofvisitors,
         avgwebsite,
         avgtransaction,
-        getAllElements,
-        child_0_1, child_0_2, child_1_1, child_1_3, child_2_1, child_2_2, child_2_3, child_3_1, child_3_2, child_3_3, child_4_1, child_4_2, child_4_3, child_5_1, child_5_2, child_5_3,
+        child_0_1, child_0_2, child_1_1, child_1_2,child_1_3, child_2_1, child_2_2, child_2_3, child_3_1, child_3_2, child_3_3, child_4_1, child_4_2, child_4_3, child_5_1, child_5_2, child_5_3,
         e,
-        q,
-        A,
-        n,
-        o,
-        u,
-        y,
-        l,
-        w,
-        k,
-        d,
-        a,
-        s,
-        h,
-        g,
-        z,
-        m,
-        p,
-        f,
-        t,
-        B,
+        X,
+        Sv,
+        W,
+        L,
+        T,
+        C,
         querySelector,
         roundHundredth,
-        website,
         transaction,
         customslider,
         visitors,
